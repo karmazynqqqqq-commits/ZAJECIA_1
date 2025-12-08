@@ -86,5 +86,5 @@ def draw_mikolaj():
     ax.add_patch(eye_right)
 
     # 10. Broda (biały elipsa - prostsze niż skomplikowane kształty)
-    beard = patches.Ellipse(
+    beard = patches.Ellipse()
         (0, -2.5), 3.5, 3.5, # (x, y) środek,
