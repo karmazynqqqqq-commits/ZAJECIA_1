@@ -1,0 +1,55 @@
+import streamlit as st
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# --- Ustawienia Strony Streamlit ---
+st.set_page_config(page_title="Streamlit Mikołaj", layout="centered")
+st.title("🎅 Prosty Mikołaj w Streamlit (Matplotlib)")
+
+# --- Funkcje Rysujące (Matplotlib) ---
+
+def draw_circle(ax, x, y, radius, color):
+    """Rysuje wypełnione koło na osi 'ax'."""
+    circle = patches.Circle((x, y), radius, facecolor=color, edgecolor='black', linewidth=1.5)
+    ax.add_patch(circle)
+
+def draw_rectangle(ax, x, y, width, height, color):
+    """Rysuje wypełniony prostokąt na osi 'ax'."""
+    rectangle = patches.Rectangle((x, y), width, height, facecolor=color, edgecolor='black', linewidth=1.5)
+    ax.add_patch(rectangle)
+
+def draw_triangle(ax, x1, y1, x2, y2, x3, y3, color):
+    """Rysuje wypełniony trójkąt na osi 'ax'."""
+    triangle = patches.Polygon([[x1, y1], [x2, y2], [x3, y3]], facecolor=color, edgecolor='black', linewidth=1.5)
+    ax.add_patch(triangle)
+
+# --- Funkcja Główna Rysująca Mikołaja ---
+
+def draw_santa():
+    # Konfiguracja sceny Matplotlib
+    fig, ax = plt.subplots(figsize=(6, 8))
+    ax.set_aspect('equal')
+    ax.set_xlim(-150, 150)
+    ax.set_ylim(-200, 200)
+    ax.axis('off') # Ukrywamy osie
+
+    # 1. Ciało (Czerwony Prostokąt)
+    draw_rectangle(ax, -60, -180, 120, 150, "red")
+
+    # 2. Pasek i Klamra
+    draw_rectangle(ax, -70, -40, 140, 20, "black")
+    draw_rectangle(ax, -20, -35, 40, 10, "gold")
+
+    # 3. Głowa (Beżowe Koło)
+    draw_circle(ax, 0, 30, 45, "peachpuff")
+
+    # 4. Broda (Białe Koło)
+    draw_circle(ax, 0, -15, 55, "white")
+
+    # 5. Czapka
+    draw_triangle(ax, -65, 75, 65, 75, 0, 180, "red") # Trójkąt
+    draw_rectangle(ax, -75, 70, 150, 10, "white") # Opaska
+    draw_circle(ax, 0, 180, 20, "white") # Pompon
+
+    # 6. Elementy Twarzy
+    draw_circle(ax, -20, 45, 5, "black") # Lewe Oko
